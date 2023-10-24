@@ -89,7 +89,7 @@
     <Compile Include="Effects\AddGold.cs" />
     <Compile Include="Effects\ExtraJumps.cs" />
     <Compile Include="Effects\FlipControls.cs" />
-    <Compile Include="Effects\SpawnCommonWeapon.cs" />
+    <Compile Include="Effects\SpawnWeapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,21 +1,22 @@
-﻿using ML_CrowdControl.Effects.Data;
-using ML_CrowdControl.Effects;
-using System;
-using WarpWorld.CrowdControl;
+﻿using WarpWorld.CrowdControl;
 using Services;
 using Singletons;
+using ML_CrowdControl.Effects.Data;
+using ML_CrowdControl.Effects;
+using System;
 
 namespace Skul_CrowdControl
 {
 
     [MLCC_EffectData(
-        ID = "GiveGold",
-        Name = "Give Gold",
-        Description = "Gives the player gold"
+        ID = "SpawnSkull",
+        Name = "Spawn Skul",
+        Description = "Spawns a random Skul for the player",
+        Morality = Morality.Neutral
 
     )]
-    
-    class GiveCoin : MLCC_Effect
+
+    class SpawnWeapon : MLCC_Effect
     {
         public override EffectResult OnTriggerEffect(CCEffectInstance effectInstance)
         {
@@ -24,7 +25,7 @@ namespace Skul_CrowdControl
             try
             {
                 
-                Singleton<Service>.Instance.levelManager.DropGold(100, 100);
+                Singleton<Service>.Instance.levelManager.player.StartCoroutine(Base.SpawnWeaponSkullRoutine((Rarity)MMMaths.random.Next(4)));
             }
             catch (Exception e)
             {
@@ -39,3 +40,5 @@ namespace Skul_CrowdControl
         }
     }
 }
+
+
