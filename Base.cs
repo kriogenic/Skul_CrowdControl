@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using WarpWorld.CrowdControl;
 
 namespace Skul_CrowdControl
 {
@@ -253,6 +254,34 @@ namespace Skul_CrowdControl
     }
 
 
+    //Handles effect processing in the Service update, (needs testing but should work)
+    [HarmonyPatch(typeof(Service), "Update")] 
+    class EffectProcessing
+    {
+        public static void Prefix()
+        {
+            if (CrowdControl.ActionQueue.Count == 0)
+                return;
+
+            Queue<Action> recycledActions = new Queue<Action>();
+
+            while (CrowdControl.ActionQueue.Count > 0)
+            {
+                Action action = CrowdControl.ActionQueue.Dequeue();
+
+                try
+                {
+                    action.Invoke();
+                }
+                catch (Exception e)
+                {
+                    recycledActions.Enqueue(action);
+                }
+            }
+            if (recycledActions.Count > 0)
+                CrowdControl.ActionQueue = recycledActions;
+        }
+    }
 
     public class Base
     {
