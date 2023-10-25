@@ -255,7 +255,6 @@ namespace Skul_CrowdControl
 
 
     //Handles effect processing in the Service update, (needs testing but should work)
-    //tw
     [HarmonyPatch(typeof(Service), "Update")] 
     class EffectProcessing
     {
