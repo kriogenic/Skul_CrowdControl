@@ -22,7 +22,7 @@ namespace Skul_CrowdControl
 
             try
             {
-                Singleton<Service>.Instance.levelManager.player.movement.airJumpCount.AddOrUpdate(this, 2);
+                Singleton<Service>.Instance.levelManager.player.movement.airJumpCount.Add(this, 1);
             }
             catch (Exception e)
             {

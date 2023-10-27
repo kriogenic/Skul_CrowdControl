@@ -16,16 +16,17 @@ namespace Skul_CrowdControl
     )]
     class HealPlayer : MLCC_Effect
     {
+        //During testing, the CC Interactive page would show a success and failure toast upon triggering if it had been queued?
+        //Further live testing required
         public override EffectResult OnTriggerEffect(CCEffectInstance effectInstance)
         {
             if (!Base.isReady()) return EffectResult.Retry;
             try
             {
-                //If we aren't missing over 20 Health don't heal
-                if(Singleton<Service>.Instance.levelManager.player.health.currentHealth > Singleton<Service>.Instance.levelManager.player.health.currentHealth - 20)
+                if(Singleton<Service>.Instance.levelManager.player.health.currentHealth > Singleton<Service>.Instance.levelManager.player.health.maximumHealth - 20)
                     return EffectResult.Retry;
 
-                Singleton<Service>.Instance.levelManager.player.health.Heal(20, true);
+                Singleton<Service>.Instance.levelManager.player.health.Heal(20, false);
                     
             }
             catch (Exception e)

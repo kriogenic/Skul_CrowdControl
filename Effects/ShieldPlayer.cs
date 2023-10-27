@@ -21,7 +21,7 @@ namespace Skul_CrowdControl
             if (!Base.isReady()) return EffectResult.Retry;
             try
             {
-                Singleton<Service>.Instance.levelManager.player.health.shield.AddOrUpdate(this, 30);
+                Singleton<Service>.Instance.levelManager.player.health.shield.Add(this, 30);
             }
             catch (Exception e)
             {
