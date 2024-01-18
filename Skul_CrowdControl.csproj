@@ -90,6 +90,7 @@
     <Compile Include="Effects\AddGold.cs" />
     <Compile Include="Effects\ExtraJumps.cs" />
     <Compile Include="Effects\FlipControls.cs" />
+    <Compile Include="Effects\SpawnCurrency.cs" />
     <Compile Include="Effects\SpawnWeapon.cs" />
     <Compile Include="Header.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

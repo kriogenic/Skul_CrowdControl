@@ -4,6 +4,7 @@ using ML_CrowdControl.Effects;
 using System;
 using Services;
 using Singletons;
+using MelonLoader;
 
 namespace Skul_CrowdControl
 {
@@ -20,8 +21,19 @@ namespace Skul_CrowdControl
         {
             if (!Base.isReady()) return EffectResult.Retry;
 
+
+
+
+
+            if (Base.additionalJumpActivated)
+            {
+                MelonLogger.Msg("ADDITION JUMP ALREADY ACTIVE RETRY!");
+                return EffectResult.Retry;
+            }
+
             try
             {
+                Base.additionalJumpActivated = true;
                 Singleton<Service>.Instance.levelManager.player.movement.airJumpCount.Add(this, 1);
             }
             catch (Exception e)
@@ -36,6 +48,7 @@ namespace Skul_CrowdControl
         {
             try
             {
+                Base.additionalJumpActivated = false;
                 Singleton<Service>.Instance.levelManager.player.movement.airJumpCount.Remove(this);
             }
             catch (Exception ex)

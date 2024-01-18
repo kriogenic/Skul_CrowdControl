@@ -13,8 +13,7 @@ namespace Skul_CrowdControl
     [MLCC_EffectData(
         ID = "SkillReroll",
         Name = "Reroll Skills",
-        Description = "Rerolls the current weapon skills",
-        RetryDelay = 30
+        Description = "Rerolls the current weapon skills"
 
     )]
     class SkillReroll : MLCC_Effect
@@ -27,10 +26,11 @@ namespace Skul_CrowdControl
             {
                 
                 Character character = Singleton<Service>.Instance.levelManager.player;
-                if(character.playerComponents.inventory.weapon.current.name.Equals("Skul"))
+                Weapon current = character.playerComponents.inventory.weapon.current;
+                if (current.name.Equals("Skul"))
                     return EffectResult.Retry;
 
-                Weapon current = character.playerComponents.inventory.weapon.current;
+                
                 current.RerollSkills();
             }
             catch (Exception e)

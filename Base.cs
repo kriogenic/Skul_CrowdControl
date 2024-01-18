@@ -289,6 +289,7 @@ namespace Skul_CrowdControl
         public static bool patched = false;
         public static bool noAbilitiesActivated = false;
         public static bool infiniteDashActivated = false;
+        public static bool additionalJumpActivated = false;
         public static Type characterMoveType = typeof(Characters.Movements.Movement);
         public static Type configType = typeof(Characters.Movements.Movement.Config);
 

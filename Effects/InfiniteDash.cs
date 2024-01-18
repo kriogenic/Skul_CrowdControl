@@ -16,7 +16,14 @@ namespace Skul_CrowdControl
     {
         public override EffectResult OnStart(CCEffectInstance effectInstance)
         {
-            if (!Base.isReady()) return EffectResult.Retry;
+            if (!Base.isReady())
+            {
+                if (effectInstance.retryCount == 2)
+                {
+                    return EffectResult.Failure;
+                }
+                return EffectResult.Retry;
+            }
 
             try
             {
